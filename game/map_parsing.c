@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:31:40 by thelmy            #+#    #+#             */
-/*   Updated: 2024/06/25 20:29:53 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/06/26 13:02:13 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,44 @@ int valid_letters_count(char **str)
 	int count_p = 0;
 	int count_e = 0;
 	int count_c = 0;
+	t_node size;
+	int flag = 0;
+	size.height = 0;
+	size.width = 0;
+	
 	while (str[i])
 	{
+		j = 0;
 		while(str[i][j])
 		{
 			if (str[i][j] != '1' && str[i][j] != '0' && str[i][j] != 'P' && str[i][j] != 'E' && str[i][j] != 'C')
 				return 0;
-			if (str[i][j] == '1' && str[i][j] == '0' && str[i][j] == 'P' && str[i][j] == 'E' && str[i][j] == 'C')
-				{
-					if (str[i][j] == 'P')
-						count_p++;
-					if (str[i][j] == 'E')
-						count_e++;
-					if (str[i][j] == 'C')
-						count_c++;
-				}
-				j++;
+			if (str[i][j] == 'P')
+				count_p++;
+			if (str[i][j] == 'E')
+				count_e++;
+			if (str[i][j] == 'C')
+				count_c++;
+			j++;
+		}
+		if (0 < j)
+		{
+			if (!size.width && !flag)
+			{
+				size.width = j;
+				flag = 1;
+			}
+			if (size.width != j)
+				return (0);
 		}
 		i++;
 	}
-		return (count_c);
+	size.height = i;
+	if (size.height == size.width)
+		return (0);
+	if (count_p != 1 || count_e != 1)
+		return (0);
+	return (count_c);
 }
 int	is_fully_one(char *str)
 {
@@ -46,24 +64,23 @@ int	is_fully_one(char *str)
 
 	while (str[i])
 	{
-		if (str[i] != '1'&& str[i] != '\n')
+		if (str[i] != '1')
+		{
+			if (str[i] == '\n')
+				break;
 			return 0;
+		}
 		i++;
-	}
+	} 
 	return (1);
 }
 
 int is_one(char *str)
 {
-	int i = 0;
 	
 	int len = ft_strlen(str) - 1;
-	while(str[i])
-	{
-		if (str[0] == '1' && str[len] == '1')
-			return (1);
-		i++;	
-	}
+	if (str[0] == '1' && str[len] == '1')
+		return (1);
 	return (0);
 }
 int	t_strchr(const char *s, int c)
@@ -100,32 +117,29 @@ char **map_parsing(int fd)
 	char **str = NULL;
 	if (!is_fully_one(read))
 	{
-		printf("invalid entries1\n");
+		write(2, "invalid entries\n", 16);
 		free(read);
 		exit(1);
 	}
 	while (read)
 	{
 		read_next = get_next_line(fd);
-		if ((!t_strchr(read_next, '\n') && !is_fully_one(read_next)) || (t_strchr(read_next, '\n') && is_one(read_next)))
-			{
-				printf("invalid entries2\n");
-				free(read);
-			}
 		if (read_next == NULL)
 			break;
+		if ((t_strchr(read_next, '\n') == 0 && !is_fully_one(read_next)) || (t_strchr(read_next, '\n') && is_one(read_next)))
+			{
+				write(2, "invalid entries2\n", 17);
+				free(read);
+				exit(1);
+			}
 		read = ft_strjoin(read, read_next);
 		free(read_next);
 	}
 	str = ft_split(read, '\n');
-	if (valid_letters_count(str))
+	if (!valid_letters_count(str))
 	{
-		printf("invalid entries3\n");
-		exit(1);
-	}
-	if (valid_letters_count(str) && free_arr(str))
-	{
-		printf("invalid entries3\n");
+		free_arr(str);
+		write(2, "invalid entries4\n", 17);
 		exit(1);
 	}
 	free(read);
@@ -134,8 +148,6 @@ char **map_parsing(int fd)
 
 // what to do next in parsing?
 
-// make sure there is no other entries 
-
-// check if 'c' at least one... 
-// 'e' & 'p' should be 1
+// check if all line same hight 
+// check if its rectangular not a square;
  
