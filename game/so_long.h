@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:36:59 by thelmy            #+#    #+#             */
-/*   Updated: 2024/06/26 12:45:29 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/06/28 14:28:08 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,16 @@
 
 typedef struct node
 {
-	int height;
-	int width;
-} t_node;
+	int		height;
+	int		width;
+	char	**map;
+	char	**copy;
+	int		x;
+	int		y;
+	int		end;
+	int		coins;
+}			t_game;
+
 size_t	t_strlen(char *str);
 int		t_strncmp( char *s1, char *s2, size_t n);
 int		t_strnstr(char *haystack, char *needle);

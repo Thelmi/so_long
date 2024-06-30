@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:36:01 by thelmy            #+#    #+#             */
-/*   Updated: 2024/06/25 14:51:24 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/06/28 19:04:35 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int main(int ac, char **av)
 		exit(1);
 	while (i < ac - 1)
 	{
-		if (t_strnstr(av[1], ".ber"))
+		if (t_strnstr(av[1], ".ber") && t_strlen(av[1]))
 		{
 			fd = open(av[1], O_RDONLY);
 			if (fd == -1)
