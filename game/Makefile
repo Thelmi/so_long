@@ -2,19 +2,28 @@ NAME = so_long
 
 LIBFT = ./libft/libft.a
 
-SRC = parsing.c map_parsing.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
+MINILBX = minilibx/libmlx.a
+
+SRC = program.c parsing.c map_parsing.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 OBJ := $(SRC:.c=.o)
 
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -Iminilibx -Ilibft
+
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+%.o: %.c
+	cc $(CFLAGS) -c $< -o $@
+
+$(NAME): $(LIBFT) $(MINILBX) $(OBJ)
+	cc $(OBJ) libft/libft.a -Lminilibx -lmlx -framework OpenGL -framework AppKit  -o $(NAME)
 
 $(LIBFT):
 	make -C ./libft
+
+$(MINILBX):
+	make -C ./minilibx
 
 re: fclean all
 

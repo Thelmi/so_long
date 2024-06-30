@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:36:01 by thelmy            #+#    #+#             */
-/*   Updated: 2024/06/28 19:04:35 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/06/30 11:02:47 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	t_strncmp( char *s1, char *s2, size_t n)
 	return (0);
 }
 
-int main(int ac, char **av)
+void parsing(int ac, char **av)
 {
 	int i = 0;
 	int fd = 0;
