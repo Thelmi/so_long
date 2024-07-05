@@ -8,8 +8,8 @@ SRC = program.c parsing.c map_parsing.c get_next_line/get_next_line.c get_next_l
 
 OBJ := $(SRC:.c=.o)
 
-CFLAGS	= -Wall -Wextra -Werror -Iminilibx -Ilibft
-
+CFLAGS = -Wall -Wextra -Werror -Iminilibx -Ilibft 
+#LDFLAGS = -fsanitize=address -g
 
 all: $(NAME)
 
@@ -17,7 +17,7 @@ all: $(NAME)
 	cc $(CFLAGS) -c $< -o $@
 
 $(NAME): $(LIBFT) $(MINILBX) $(OBJ)
-	cc $(OBJ) libft/libft.a -Lminilibx -lmlx -framework OpenGL -framework AppKit  -o $(NAME)
+	cc $(OBJ) libft/libft.a -Lminilibx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 $(LIBFT):
 	make -C ./libft

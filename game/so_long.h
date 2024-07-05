@@ -6,12 +6,16 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:36:59 by thelmy            #+#    #+#             */
-/*   Updated: 2024/06/30 15:42:29 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/05 09:35:32 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #if !defined(SO_LONG)
 #define SO_LONG
+# define W 13
+# define S 1
+# define D 2
+# define A 0
 
 #include "stdlib.h"
 #include "fcntl.h"
@@ -37,13 +41,18 @@ typedef struct node
 	int			y;
 	int			end;
 	int			coins;
+	int			apple;
+	int			*size;
 	void		*mlx;
+	void		*win;
+	int			moves;
 	t_images	graphics[5];
 }				t_game;
 
 size_t	t_strlen(char *str);
 int		t_strncmp( char *s1, char *s2, size_t n);
 int		t_strnstr(char *haystack, char *needle);
-char	**map_parsing(int fd);
-void	parsing(int ac, char **av);
+t_game	map_parsing(int fd);
+t_game	parsing(int ac, char **av);
 #endif
+//-fsanitize=address -g3

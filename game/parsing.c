@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:36:01 by thelmy            #+#    #+#             */
-/*   Updated: 2024/06/30 11:02:47 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/02 14:27:01 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,11 @@ int	t_strncmp( char *s1, char *s2, size_t n)
 	return (0);
 }
 
-void parsing(int ac, char **av)
+t_game parsing(int ac, char **av)
 {
 	int i = 0;
 	int fd = 0;
+	t_game game; 
 	if (ac != 2)
 		exit(1);
 	while (i < ac - 1)
@@ -63,12 +64,17 @@ void parsing(int ac, char **av)
 			if (fd == -1)
 			{
 				printf("Error");
+				exit(1);
 			}
-			map_parsing(fd);
+			game = map_parsing(fd);
 			close(fd);
 		}
 		else
+		{
 			printf("Error");
+			exit(1);
+		}	
 		i++;
 	}
+	return (game);
 }

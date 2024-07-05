@@ -6,12 +6,19 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:31:40 by thelmy            #+#    #+#             */
-/*   Updated: 2024/06/28 19:32:22 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/05 13:51:04 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+static void	two_printer(char **str)
+{
+	int i = 0;
+
+	while (str[i])
+		printf("%s\n", str[i++]);
+}
 int valid_letters_count(char **str, t_game *game)
 {
 	int i = 0;
@@ -46,6 +53,7 @@ int valid_letters_count(char **str, t_game *game)
 			if (!game->width && !flag)
 			{
 				game->width = j;
+				printf("%d\n",game->width);
 				flag = 1;
 			}
 			if (game->width != j)
@@ -54,11 +62,12 @@ int valid_letters_count(char **str, t_game *game)
 		i++;
 	}
 	game->height = i;
-	if (game->height == game->width)
-		return (0);
+	//if (game->height == game->width)
+	//	return (0);
 	if (count_p != 1 || count_e != 1)
 		return (0);
 	game->coins = count_c;
+	game->apple = count_c;
 	return (count_c);
 }
 
@@ -117,13 +126,13 @@ char	**free_arr(char **arr)
 	free(arr);
 	return (NULL);
 }
-void	two_printer(char **str)
-{
-	int i = 0;
+//void	two_printer(char **str)
+//{
+//	int i = 0;
 
-	while (str[i])
-		printf("%s\n", str[i++]);
-}
+//	while (str[i])
+//		printf("%s\n", str[i++]);
+//}
 
 void	catch_me_if_you_can(t_game *map)
 {
@@ -191,7 +200,7 @@ void flood_fill(t_game *game, int x, int y)
     flood_fill(game, x, y - 1);
 }
 
-char	**map_parsing(int fd)
+t_game map_parsing(int fd)
 {
 	char	*read;
 	char	*read_next;
@@ -201,6 +210,7 @@ char	**map_parsing(int fd)
 	read = get_next_line(fd);
 	read_next = NULL;
 	str = NULL;
+	game.map = NULL;
 	game.copy = NULL;
 	if (!is_fully_one(read))
 	{
@@ -225,6 +235,7 @@ char	**map_parsing(int fd)
 		free(read_next);
 	}
 	str = ft_split(read, '\n');
+	
 	if (!valid_letters_count(str, &game))
 	{
 		free_arr(str);
@@ -232,26 +243,25 @@ char	**map_parsing(int fd)
 		exit(1);
 	}
 	game.map = str;
-	game.copy = str;
-	two_printer(game.map);
+	game.copy = ft_split(read, '\n');
+	
 	catch_me_if_you_can(&game);
 	game.end = 0;
 	flood_fill(&game, game.x, game.y);
 	if (game.coins == 0 && game.end == 1)
-		printf("success");
+		printf("success\n");
 	else
-		printf("failure");
+	{
+		two_printer(game.copy);
+		printf("failure\n");
+		exit(1);
+	}
 	free(read);
-	return (str);
+	return (game);
 }
 
 // what to do next in creating game?
 
-// save images ,convert to xpm...
-// properly saved in the struct + parsing
-
-
-// initialize mlx to the struct 
 // open a window,
 // draw images.
-// keys hooks.1
+// keys hooks
