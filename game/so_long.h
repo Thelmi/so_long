@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:36:59 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/05 09:35:32 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/05 21:01:59 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,10 @@ int		t_strncmp( char *s1, char *s2, size_t n);
 int		t_strnstr(char *haystack, char *needle);
 t_game	map_parsing(int fd);
 t_game	parsing(int ac, char **av);
+void	w_key_hook(t_game **game);
+void	s_key_hook(t_game **game);
+void	a_key_hook(t_game **game);
+void	d_key_hook(t_game **game);
+void	t_drawer(t_game *game, void *win);
 #endif
 //-fsanitize=address -g3

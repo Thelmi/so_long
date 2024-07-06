@@ -6,39 +6,37 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:31:40 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/05 13:51:04 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/06 14:25:53 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	two_printer(char **str)
+int	valid_letters_count(char **str, t_game *game)
 {
-	int i = 0;
+	int	i;
+	int	j;
+	int	count_p;
+	int	count_e;
+	int	count_c;
+	int	flag;
 
-	while (str[i])
-		printf("%s\n", str[i++]);
-}
-int valid_letters_count(char **str, t_game *game)
-{
-	int i = 0;
-	int j = 0;
-	int count_p = 0;
-	int count_e = 0;
-	int count_c = 0;
-	int flag;
-	
+	i = 0;
+	j = 0;
+	count_p = 0;
+	count_e = 0;
+	count_c = 0;
 	game ->width = 0;
 	game ->height = 0;
 	flag = 0;
 	game ->coins = 0;
-	
 	while (str[i])
 	{
 		j = 0;
-		while(str[i][j])
+		while (str[i][j])
 		{
-			if (str[i][j] != '1' && str[i][j] != '0' && str[i][j] != 'P' && str[i][j] != 'E' && str[i][j] != 'C')
+			if (str[i][j] != '1' && str[i][j] != '0'
+				&& str[i][j] != 'P' && str[i][j] != 'E' && str[i][j] != 'C')
 				return (0);
 			if (str[i][j] == 'P')
 				count_p++;
@@ -53,7 +51,6 @@ int valid_letters_count(char **str, t_game *game)
 			if (!game->width && !flag)
 			{
 				game->width = j;
-				printf("%d\n",game->width);
 				flag = 1;
 			}
 			if (game->width != j)
@@ -62,8 +59,6 @@ int valid_letters_count(char **str, t_game *game)
 		i++;
 	}
 	game->height = i;
-	//if (game->height == game->width)
-	//	return (0);
 	if (count_p != 1 || count_e != 1)
 		return (0);
 	game->coins = count_c;
@@ -126,81 +121,53 @@ char	**free_arr(char **arr)
 	free(arr);
 	return (NULL);
 }
-//void	two_printer(char **str)
-//{
-//	int i = 0;
-
-//	while (str[i])
-//		printf("%s\n", str[i++]);
-//}
 
 void	catch_me_if_you_can(t_game *map)
 {
-	int i = 0;
-	int j = 0;
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
 	map->x = 0;
 	map->y = 0;
 	while (map->map[i])
 	{
 		j = 0;
-		while(map->map[i][j])
+		while (map->map[i][j])
 		{
 			if (map->map[i][j] == 'P')
 			{
 				map->x = i;
 				map->y = j;
-				//printf("map.x %d\n", map->x);
-				//printf("map.y %d\n", map->y);
 			}
 			j++;
 		}
 		i++;
-	}	
+	}
 }
-//void	flood_fill(t_game *game, int x, int y)
-//{
-//	printf("x: %d\n", x);
-//	printf("y: %d\n",y);
-//	if (x < 0 || x < 0 || x >= game->height || y >= game->width)
-//	{
-//		return ;
-//	}
-	
-//	if (game->copy[x][y] == 'C')
-//		game->coins--;
-//	if (game->copy[x][y] == 'E')
-//	{
-//		game->end = 1;
-//		return;
-//	}
-//	game->copy[x][y] = '1';
-//	flood_fill(game, x + 1, y);
-//	flood_fill(game,x - 1, y);
-//	flood_fill(game,x, y + 1);
-//	flood_fill(game,x, y - 1);
-//}
 
-void flood_fill(t_game *game, int x, int y)
-{	
-    if (x < 0 || y < 0 || x >= game->height || y >= game->width)
-        return;
-    if (game->copy[x][y] == '1')
-        return;
-    if (game->copy[x][y] == 'C')
-        game->coins--;
-    if (game->copy[x][y] == 'E')
+void	flood_fill(t_game *game, int x, int y)
+{
+	if (x < 0 || y < 0 || x >= game->height || y >= game->width)
+		return ;
+	if (game->copy[x][y] == '1')
+		return ;
+	if (game->copy[x][y] == 'C')
+		game->coins--;
+	if (game->copy[x][y] == 'E')
 	{
-        game->end = 1;
-        return;
-    }
-    game->copy[x][y] = '1';
-    flood_fill(game, x + 1, y); 
-    flood_fill(game, x - 1, y);
-    flood_fill(game, x, y + 1);
-    flood_fill(game, x, y - 1);
+		game->end = 1;
+		return ;
+	}
+	game->copy[x][y] = '1';
+	flood_fill(game, x + 1, y);
+	flood_fill(game, x - 1, y);
+	flood_fill(game, x, y + 1);
+	flood_fill(game, x, y - 1);
 }
 
-t_game map_parsing(int fd)
+t_game	map_parsing(int fd)
 {
 	char	*read;
 	char	*read_next;
@@ -214,9 +181,9 @@ t_game map_parsing(int fd)
 	game.copy = NULL;
 	if (!is_fully_one(read))
 	{
-		write(2, "invalid entries\n", 16);
-		free(read);
-		exit(1);
+		write (2, "invalid entries\n", 16);
+		free (read);
+		exit (1);
 	}
 	while (read)
 	{
@@ -232,10 +199,9 @@ t_game map_parsing(int fd)
 			exit(1);
 		}
 		read = ft_strjoin(read, read_next);
-		free(read_next);
+		free (read_next);
 	}
 	str = ft_split(read, '\n');
-	
 	if (!valid_letters_count(str, &game))
 	{
 		free_arr(str);
@@ -244,7 +210,6 @@ t_game map_parsing(int fd)
 	}
 	game.map = str;
 	game.copy = ft_split(read, '\n');
-	
 	catch_me_if_you_can(&game);
 	game.end = 0;
 	flood_fill(&game, game.x, game.y);
@@ -252,16 +217,9 @@ t_game map_parsing(int fd)
 		printf("success\n");
 	else
 	{
-		two_printer(game.copy);
 		printf("failure\n");
 		exit(1);
 	}
-	free(read);
+	free (read);
 	return (game);
 }
-
-// what to do next in creating game?
-
-// open a window,
-// draw images.
-// keys hooks
