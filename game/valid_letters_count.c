@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 15:57:51 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/07 19:36:14 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/08 17:16:08 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int	valid_letters_count(char **str, t_game *game)
 	if (game->height > 11 || game->width > 20)
 	{
 		printf("error");
+		free_arr(str);
 		exit(1);
 	}
 	return (count_c);

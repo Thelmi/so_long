@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:31:40 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/08 14:51:01 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/08 19:17:23 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void	read_map_free(char **read, char **read_next, int fd)
 				|| (t_strchr(*read_next, '\n') && !is_one(*read_next))))
 		{
 			write(2, "invalid entries2\n", 17);
-			free(*read);
+			if (*read)
+				free(*read);
+			if (*read_next)
+				free(*read_next);
 			exit(1);
 		}
 		*read = ft_strjoin(*read, *read_next);
@@ -85,10 +88,12 @@ t_game	map_parsing(int fd)
 		ouch(str);
 	game.map = str;
 	game.copy = ft_split(read, '\n');
+	free(read);
 	catch_me_if_you_can(&game);
 	game.end = 0;
 	flood_fill(&game, game.x, game.y);
+	if (game.copy)
+		free(game.copy);
 	succes_or_fail(game);
-	free (read);
 	return (game);
 }

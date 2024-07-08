@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 20:38:39 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/06 22:47:11 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/08 17:04:23 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ void	empty_map(char *str)
 	if (!str || str[0] == '\n')
 	{
 		printf("eww what is this");
+		if (str)
+			free(str);
 		exit(1);
 	}
 }

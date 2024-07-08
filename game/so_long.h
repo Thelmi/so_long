@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:36:59 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/08 14:08:14 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/08 20:35:35 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct node
 	int			y;
 	int			end;
 	int			player;
+	int			key;
 	int			exit;
 	int			coins;
 	int			apple;
@@ -49,6 +50,7 @@ typedef struct node
 	void		*mlx;
 	void		*win;
 	int			moves;
+	int			z;
 	t_images	graphics[5];
 }				t_game;
 
