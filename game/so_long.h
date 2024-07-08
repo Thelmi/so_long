@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:36:59 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/05 21:01:59 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/08 14:08:14 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define S 1
 # define D 2
 # define A 0
+# define ESC 53
 
 #include "stdlib.h"
 #include "fcntl.h"
@@ -40,6 +41,8 @@ typedef struct node
 	int			x;
 	int			y;
 	int			end;
+	int			player;
+	int			exit;
 	int			coins;
 	int			apple;
 	int			*size;
@@ -59,5 +62,13 @@ void	s_key_hook(t_game **game);
 void	a_key_hook(t_game **game);
 void	d_key_hook(t_game **game);
 void	t_drawer(t_game *game, void *win);
+int		valid_letters_count(char **str, t_game *game);
+char	**free_arr(char **arr);
+int	is_fully_one(char *str);
+int	is_one(char *str);
+int	t_strchr(const char *s, int c);
+void	catch_me_if_you_can(t_game *map);
+void	flood_fill(t_game *game, int x, int y);
+void	empty_map(char *str);
 #endif
 //-fsanitize=address -g3

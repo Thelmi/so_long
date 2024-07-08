@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:23:33 by thelmy            #+#    #+#             */
-/*   Updated: 2024/06/25 15:19:38 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/07 20:33:39 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE 
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE INT_MAX - 1
 # endif
 
 # include <fcntl.h>

@@ -4,7 +4,7 @@ LIBFT = ./libft/libft.a
 
 MINILBX = minilibx/libmlx.a
 
-SRC = program.c key_hooks.c parsing.c map_parsing.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
+SRC = program.c cases.c key_hooks.c valid_letters_count.c map_parsing_helpers.c parsing.c map_parsing.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 OBJ := $(SRC:.c=.o)
 

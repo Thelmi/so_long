@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:36:01 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/05 21:25:24 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/08 14:45:43 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,16 @@ int	t_strnstr(char *haystack, char *needle)
 {
 	size_t	i;
 	size_t	needlen;
+	size_t	len;
 
 	i = 0;
-	needlen = t_strlen(needle);
+	len = ft_strlen(haystack);
+ 	needlen = t_strlen(needle);
 	if (!*needle)
 		return (0);
-	while (haystack[i])
+	while (i < needlen)
 	{
-		if (t_strncmp(haystack + i, needle, needlen) == 0)
+		if (t_strncmp(&haystack[len - 4], needle, needlen) == 0) 
 			return (1);
 		i++;
 	}
@@ -54,9 +56,9 @@ int	t_strnstr(char *haystack, char *needle)
 
 void	bye(char *str)
 {
-	if (t_strnstr(str, ".ber") == 0)
+	if (!(t_strnstr(str, ".ber") && t_strlen(str) > 4))
 	{
-		printf("Error");
+		printf("not funny");
 		exit (1);
 	}
 }
@@ -73,7 +75,7 @@ t_game	parsing(int ac, char **av)
 		exit(1);
 	while (i < ac - 1)
 	{
-		if (t_strnstr(av[1], ".ber"))
+		if (t_strnstr(av[1], ".ber") && ft_strlen(av[1]) > 4)
 		{
 			fd = open (av[1], O_RDONLY);
 			if (fd == -1)

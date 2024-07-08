@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 20:38:39 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/05 21:04:38 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/06 22:47:11 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,14 @@ void	a_key_hook(t_game **game)
 		t_drawer((*game), (*game)->win);
 		(*game)->moves++;
 		printf("moves: %d\n", (*game)->moves);
+	}
+}
+
+void	empty_map(char *str)
+{
+	if (!str || str[0] == '\n')
+	{
+		printf("eww what is this");
+		exit(1);
 	}
 }

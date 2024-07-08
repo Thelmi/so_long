@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:21:33 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/05 21:00:09 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/08 14:19:57 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ int	key_hook(int keycode, t_game *game)
 		d_key_hook(&game);
 	if (keycode == A && game->map[game->x][game -> y - 1] != '1')
 		a_key_hook(&game);
+	if (keycode == ESC)
+		mlx_destroy_image(game->mlx, game->win);
 	return (0);
 }
 
@@ -119,3 +121,7 @@ int	main(int ac, char **av)
 	mlx_key_hook(win, key_hook, &game);
 	mlx_loop(game.mlx);
 }
+
+// size of game
+// protection of the functions
+// memmory management
