@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:36:59 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/08 20:35:35 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/13 21:05:56 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,14 @@ void	d_key_hook(t_game **game);
 void	t_drawer(t_game *game, void *win);
 int		valid_letters_count(char **str, t_game *game);
 char	**free_arr(char **arr);
-int	is_fully_one(char *str);
-int	is_one(char *str);
-int	t_strchr(const char *s, int c);
+int		is_fully_one(char *str);
+int		is_one(char *str);
+int		t_strchr(const char *s, int c);
 void	catch_me_if_you_can(t_game *map);
 void	flood_fill(t_game *game, int x, int y);
 void	empty_map(char *str);
+void	no_crash(t_game **game, t_game *image, int i);
+void	delete_images(t_game **game, t_game *image, int i);
+int		close_window(t_game *game);
 #endif
 //-fsanitize=address -g3

@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:36:01 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/08 14:45:43 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/13 17:17:30 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ int	t_strnstr(char *haystack, char *needle)
 
 	i = 0;
 	len = ft_strlen(haystack);
- 	needlen = t_strlen(needle);
+	needlen = t_strlen(needle);
 	if (!*needle)
 		return (0);
 	while (i < needlen)
 	{
-		if (t_strncmp(&haystack[len - 4], needle, needlen) == 0) 
+		if (t_strncmp(&haystack[len - 4], needle, needlen) == 0)
 			return (1);
 		i++;
 	}

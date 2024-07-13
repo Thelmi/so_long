@@ -30,7 +30,7 @@ re: fclean all
 clean:
 	rm -rf $(OBJ) $(OBJB)
 	make clean -C ./libft
-
+	make clean -C ./minilibx
 fclean: clean
 	rm -rf $(NAME)
 	make fclean -C ./libft

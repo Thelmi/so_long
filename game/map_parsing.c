@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:31:40 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/08 19:17:23 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/13 17:16:53 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	succes_or_fail(t_game game)
 	else
 	{
 		printf("failure\n");
+		free_arr(game.map);
 		exit(1);
 	}
 }
@@ -78,7 +79,6 @@ t_game	map_parsing(int fd)
 	read = get_next_line(fd);
 	empty_map(read);
 	read_next = NULL;
-	str = NULL;
 	game.map = NULL;
 	game.copy = NULL;
 	not_fully_one(read);
@@ -93,7 +93,7 @@ t_game	map_parsing(int fd)
 	game.end = 0;
 	flood_fill(&game, game.x, game.y);
 	if (game.copy)
-		free(game.copy);
+		free_arr(game.copy);
 	succes_or_fail(game);
 	return (game);
 }

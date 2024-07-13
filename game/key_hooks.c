@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 20:38:39 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/08 17:04:23 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/13 19:45:45 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ void	w_key_hook(t_game **game)
 	if ((*game)->map[(*game)->x - 1][(*game)-> y] == 'E' && (*game)->apple == 0)
 	{
 		mlx_destroy_window((*game)->mlx, (*game)->win);
+		delete_images(game, NULL, 4);
+		free_arr((*game)->map);
+		write(1, "Congrats u did it", 17);
 		exit(0);
 	}
 	else if ((*game)->map[(*game)->x - 1][(*game)-> y] != 'E')
@@ -39,6 +42,9 @@ void	s_key_hook(t_game **game)
 	if ((*game)->map[(*game)->x + 1][(*game)-> y] == 'E' && (*game)->apple == 0)
 	{
 		mlx_destroy_window((*game)->mlx, (*game)->win);
+		delete_images(game, NULL, 4);
+		free_arr((*game)->map);
+		write(1, "Congrats u did it", 17);
 		exit(0);
 	}
 	else if ((*game)->map[(*game)->x + 1][(*game)-> y] != 'E')
@@ -59,6 +65,9 @@ void	d_key_hook(t_game **game)
 	if ((*game)->map[(*game)->x][(*game)-> y + 1] == 'E' && (*game)->apple == 0)
 	{
 		mlx_destroy_window((*game)->mlx, (*game)->win);
+		delete_images(game, NULL, 4);
+		free_arr((*game)->map);
+		write(1, "Congrats u did it", 17);
 		exit(0);
 	}
 	else if ((*game)->map[(*game)->x][(*game)-> y + 1] != 'E')
@@ -79,6 +88,9 @@ void	a_key_hook(t_game **game)
 	if ((*game)->map[(*game)->x][(*game)-> y - 1] == 'E' && (*game)->apple == 0)
 	{
 		mlx_destroy_window((*game)->mlx, (*game)->win);
+		delete_images(game, NULL, 4);
+		free_arr((*game)->map);
+		write(1, "Congrats u did it", 17);
 		exit(0);
 	}
 	else if ((*game)->map[(*game)->x][(*game)-> y - 1] != 'E')
