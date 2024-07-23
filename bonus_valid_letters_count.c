@@ -1,44 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_letters_count.c                              :+:      :+:    :+:   */
+/*   bonus_valid_letters_count.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/06 15:57:51 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/23 21:18:43 by thelmy           ###   ########.fr       */
+/*   Created: 2024/07/23 14:46:07 by thelmy            #+#    #+#             */
+/*   Updated: 2024/07/23 23:05:54 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**free_arr(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-	return (NULL);
-}
-
-void	initializer(t_game **game)
-{
-	(*game)->height = 0;
-	(*game)->width = 0;
-	(*game)->coins = 0;
-	(*game)->player = 0;
-	(*game)->exit = 0;
-	(*game)->apple = 0;
-	(*game)->enemy_counter = 0;
-	(*game)->read = NULL;
-}
-
-void	game_character_counters(t_game **game, char **str, int *count_c, int *j)
+void	bonus_game_character(t_game **game, char **str, int *count_c, int *j)
 {
 	*j = 0;
 	while (str[(*game)->height][(*j)])
@@ -48,6 +22,7 @@ void	game_character_counters(t_game **game, char **str, int *count_c, int *j)
 			&& str[(*game)->height][(*j)] != 'P'
 			&& str[(*game)->height][(*j)] != 'E'
 			&& str[(*game)->height][(*j)] != 'C'
+			&& str[(*game)->height][(*j)] != 'N'
 			)
 			something_is_missing(game, str);
 		if (str[(*game)->height][(*j)] == 'P')
@@ -56,31 +31,13 @@ void	game_character_counters(t_game **game, char **str, int *count_c, int *j)
 			(*game)->exit++;
 		if (str[(*game)->height][(*j)] == 'C')
 			(*count_c)++;
+		if (str[(*game)->height][(*j)] == 'N')
+			(*game)->enemy_counter++;
 		(*j)++;
 	}
 }
 
-void	width_checker(t_game **game, int *flag, int j, char **str)
-{
-	if (0 < j)
-	{
-		if (!(*game)->width && !*flag)
-		{
-			(*game)->width = j;
-			*flag = 1;
-		}
-		if ((*game)->width != j)
-		{
-			free_arr(str);
-			free((*game)->read);
-			write(2, "The map is fat\n", 17);
-			close((*game)->fd);
-			exit(1);
-		}
-	}
-}
-
-int	valid_letters_count(char **str, t_game *game, char *read, int fd)
+int	b_valid_letters_count(char **str, t_game *game, char *read, int fd)
 {
 	int	count_c;
 	int	flag;
@@ -93,7 +50,7 @@ int	valid_letters_count(char **str, t_game *game, char *read, int fd)
 	game->fd = fd;
 	while (str[game->height])
 	{
-		game_character_counters(&game, str, &count_c, &j);
+		bonus_game_character(&game, str, &count_c, &j);
 		width_checker(&game, &flag, j, str);
 		game->height++;
 	}
