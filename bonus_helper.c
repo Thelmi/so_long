@@ -6,13 +6,13 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:27:00 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/23 16:28:43 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/24 21:45:17 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_game	**enemy_pointer(t_game **game, void *win, int *i, int *j)
+t_game	**_pointer(t_game **game, void *win, int *i, int *j)
 {
 	char	**map;
 	int		x;
@@ -60,7 +60,7 @@ void	b_painter(t_game **game, void *win, int *i, int *j)
 	else if (map[*i][*j] == '1')
 		(*game)->z = mlx_put_image_to_window((*game)->mlx, win,
 				(*game)->graphics[4].img, x, y);
-	game = enemy_pointer(game, win, i, j);
+	game = _pointer(game, win, i, j);
 	if (!(*game)->z)
 		no_crash(game, NULL, 5);
 }
@@ -108,7 +108,7 @@ void	b_storing_images(t_game *images)
 				&(images->graphics[i].img_width),
 				&(images->graphics[i].img_height));
 		if (!images->graphics[i].img)
-			no_crash(NULL, images, i);
+			no_crash(NULL, images, i - 1);
 		i++;
 	}
 }
@@ -123,6 +123,14 @@ int	b_key_hook(int keycode, t_game *game)
 		bd_key_hook(&game);
 	if (keycode == A && game->map[game->x][game -> y - 1] != '1')
 		ba_key_hook(&game);
+	if (keycode == K &&
+		(game->map[game->x - 1][game->y] == 'N' ||
+		game->map[game->x + 1][game->y] == 'N' ||
+		game->map[game->x][game->y - 1] == 'N' ||
+		game->map[game->x][game->y + 1] == 'N'))
+	{
+		bk_key_hook(&game);
+	}
 	if (keycode == ESC)
 		bonus_close_window(game);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:21:33 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/23 15:02:42 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/24 15:42:09 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	storing_images(t_game *images)
 				&(images->graphics[i].img_width),
 				&(images->graphics[i].img_height));
 		if (!images->graphics[i].img)
-			no_crash(NULL, images, i);
+			no_crash(NULL, images, i - 1);
 		i++;
 	}
 }

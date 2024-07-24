@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:36:59 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/23 21:38:06 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/24 16:40:03 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 # define D 2
 # define A 0
 # define ESC 53
-
+# define K 40
 # include "stdlib.h"
+# include <stdio.h>
 # include "fcntl.h"
 # include "./minilibx/mlx.h"
 # include "libft/libft.h"
@@ -113,5 +114,7 @@ void	bye(char *str);
 void	not_fully_one(char *read, int fd);
 void	read_map_free(char **read, char **read_next, int fd);
 void	succes_or_fail(t_game game);
+void	bk_key_hook(t_game **game);
+
 #endif
 //-fsanitize=address -g3

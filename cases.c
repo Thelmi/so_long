@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 16:06:34 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/23 21:42:25 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/23 23:59:29 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	no_crash(t_game **game, t_game *image, int i)
 {
 	if (image != NULL)
 	{
-		write(2, "execution failed", 16);
+		write(2, "execution failed1", 16);
 		if (image->win)
 			mlx_destroy_window(image->mlx, image->win);
 		if (image->graphics[0].img)
@@ -40,7 +40,7 @@ void	no_crash(t_game **game, t_game *image, int i)
 	}
 	else
 	{
-		write(2, "execution failed", 16);
+		write(2, "execution failed2", 16);
 		if ((*game)->win)
 			mlx_destroy_window((*game)->mlx, (*game)->win);
 		if ((*game)->graphics[0].img)

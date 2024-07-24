@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:12:16 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/23 21:28:13 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/24 03:37:44 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	up_right(t_game **game, int *new_x, int *new_y, int *flag)
 		*flag = 0;
 }
 
-t_game	game_engine(int ac, char **av)
+void	game_engine(int ac, char **av)
 {
 	t_game	game;
 	void	*win;
@@ -91,14 +91,11 @@ t_game	game_engine(int ac, char **av)
 	catch_him_if_you_can(&game);
 	mlx_loop_hook(game.mlx, enemy, &game);
 	mlx_loop(game.mlx);
-	return (game);
 }
 
 int	main(int ac, char **av)
 {
-	t_game	game;
-
-	game = game_engine(ac, av);
+	game_engine(ac, av);
 }
 
 // try to make moves doesnt flinch

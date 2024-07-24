@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 14:29:48 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/23 21:46:15 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/07/24 18:17:26 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,42 @@ void	ba_key_hook(t_game **game)
 		write(1,"Moves: ",7);
 		ft_putnbr_fd((*game)->moves, 1);
 		write(1, "\n", 1);
+	}
+}
+
+void	bk_key_hook(t_game **game)
+{
+	if ((*game)->map[(*game)->x - 1][(*game)-> y] == 'N')
+	{
+		(*game)->map[(*game)->x][(*game)->y] = '0';
+		(*game)->map[(*game)->x - 1][(*game)->y] = 'P';
+		(*game)->x--;
+		bt_drawer((*game), (*game)->win);
+		(*game)->moves++;
+	}
+	else if((*game)->map[(*game)->x + 1][(*game)-> y] == 'N')
+	{
+		(*game)->map[(*game)->x][(*game)->y] = '0';
+		(*game)->map[(*game)->x + 1][(*game)->y] = 'P';
+		(*game)->x++;
+		bt_drawer((*game), (*game)->win);
+		(*game)->moves++;
+	}
+	else if ((*game)->map[(*game)->x][(*game)-> y + 1] == 'N')
+	{
+		(*game)->map[(*game)->x][(*game)->y] = '0';
+		(*game)->map[(*game)->x][(*game)->y + 1] = 'P';
+		(*game)->y++;
+		bt_drawer((*game), (*game)->win);
+		(*game)->moves++;
+	}
+	else if ((*game)->map[(*game)->x][(*game)-> y - 1] == 'N')
+	{
+		(*game)->map[(*game)->x][(*game)->y] = '0';
+		(*game)->map[(*game)->x][(*game)->y - 1] = 'P';
+		(*game)->y--;
+		bt_drawer((*game), (*game)->win);
+		(*game)->moves++;
 	}
 }
 void	empty_map(char *str, char *s, int fd)
