@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:36:01 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/24 16:12:41 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/08/01 12:05:07 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,13 @@ int	t_strnstr(char *haystack, char *needle)
 		return (0);
 	while (i < needlen)
 	{
-		if (t_strncmp(&haystack[len - 4], needle, needlen) == 0)
+		if (t_strncmp(&haystack[len - 4], needle, needlen) == 0
+			&& haystack[len - 5] != '/')
 			return (1);
 		i++;
 	}
+	if (haystack[len - 5] == '/')
+		return (0);
 	return (0);
 }
 

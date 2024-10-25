@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:36:59 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/24 16:40:03 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/08/01 12:06:21 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ void	bs_key_hook(t_game **game);
 void	bd_key_hook(t_game **game);
 void	ba_key_hook(t_game **game);
 void	bonus_game_character(t_game **game, char **str, int *count_c, int *j);
-void	game_character_counters(t_game **game, char **str, int *count_c, int *j);
+void	game_character_counters(t_game **game, char **str,
+			int *count_c, int *j);
 int		b_key_hook(int keycode, t_game *game);
 int		b_valid_letters_count(char **str, t_game *game, char *read, int fd);
 void	width_checker(t_game **game, int *flag, int j, char **str);
@@ -117,4 +118,3 @@ void	succes_or_fail(t_game game);
 void	bk_key_hook(t_game **game);
 
 #endif
-//-fsanitize=address -g3

@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 16:06:34 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/23 23:59:29 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/08/01 11:59:48 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	game_over(t_game **game)
 
 void	unintialized(t_game game)
 {
-	write(2, "unintialized\n",12);
+	write(2, "unintialized\n", 12);
 	free_arr(game.map);
 	exit(1);
 }

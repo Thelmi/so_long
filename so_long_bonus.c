@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:12:16 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/24 03:37:44 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/08/01 11:57:39 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,3 @@ int	main(int ac, char **av)
 {
 	game_engine(ac, av);
 }
-
-// try to make moves doesnt flinch
-// parse cases
-// test and then norminette

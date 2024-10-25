@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:31:40 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/23 23:10:36 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/08/01 12:04:26 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	not_fully_one(char *read, int fd)
 void	succes_or_fail(t_game game)
 {
 	if (game.coins == 0 && game.end == 1)
-		write(1,"success\n", 8);
+		write(1, "success\n", 8);
 	else
 	{
 		write(1, "failure\n", 8);

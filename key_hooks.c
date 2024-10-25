@@ -6,7 +6,7 @@
 /*   By: thelmy <thelmy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 20:38:39 by thelmy            #+#    #+#             */
-/*   Updated: 2024/07/23 21:47:46 by thelmy           ###   ########.fr       */
+/*   Updated: 2024/08/01 12:02:39 by thelmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	w_key_hook(t_game **game)
 		(*game)->x--;
 		t_drawer((*game), (*game)->win);
 		(*game)->moves++;
-		write(1,"Moves: ",7);
+		write(1, "Moves: ", 7);
 		ft_putnbr_fd((*game)->moves, 1);
 		write(1, "\n", 1);
 	}
@@ -64,7 +64,7 @@ void	s_key_hook(t_game **game)
 		(*game)->x++;
 		t_drawer((*game), (*game)->win);
 		(*game)->moves++;
-		write(1,"Moves: ",7);
+		write(1, "Moves: ", 7);
 		ft_putnbr_fd((*game)->moves, 1);
 		write(1, "\n", 1);
 	}
@@ -93,7 +93,7 @@ void	d_key_hook(t_game **game)
 		(*game)->y++;
 		t_drawer((*game), (*game)->win);
 		(*game)->moves++;
-		write(1,"Moves: ",7);
+		write(1, "Moves: ", 7);
 		ft_putnbr_fd((*game)->moves, 1);
 		write(1, "\n", 1);
 	}
@@ -122,7 +122,7 @@ void	a_key_hook(t_game **game)
 		(*game)->y--;
 		t_drawer((*game), (*game)->win);
 		(*game)->moves++;
-		write(1,"Moves: ",7);
+		write(1, "Moves: ", 7);
 		ft_putnbr_fd((*game)->moves, 1);
 		write(1, "\n", 1);
 	}
